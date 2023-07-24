@@ -1,4 +1,4 @@
-package mill.contrib.gitlab
+package com.ivmoreau.millgithub
 
 import coursier.core.Authentication
 import coursier.maven.MavenRepository

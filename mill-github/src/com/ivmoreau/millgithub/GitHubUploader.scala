@@ -1,4 +1,4 @@
-package mill.contrib.gitlab
+package com.ivmoreau.millgithub
 
 import scala.concurrent.duration._
 

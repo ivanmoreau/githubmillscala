@@ -1,0 +1,5 @@
+before_install:
+  - sh -c 'chmod +x ./mill'
+  - mkdir -p ~/.m2/
+install:
+  - ./mill -i mill-github\[_\].publishM2Local

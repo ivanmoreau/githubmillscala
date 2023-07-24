@@ -1,4 +1,4 @@
-package mill.contrib.gitlab
+package com.ivmoreau.millgithub
 
 import mill._
 import mill.api.Result.{Failure, Success}

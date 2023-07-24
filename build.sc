@@ -1,18 +1,18 @@
-import $ivy.`com.goyeau::mill-git::0.2.5`
+import $ivy.`de.tototec::de.tobiasroeser.mill.vcs.version::0.4.0`
 
 import mill._
 import scalalib._
 import mill.scalalib.api.ZincWorkerUtil.scalaNativeBinaryVersion
-import com.goyeau.mill.git.{GitVersionModule, GitVersionedPublishModule}
 import mill.scalalib.publish._
 
+import de.tobiasroeser.mill.vcs.version.VcsVersion
 
 val millVersions                           = Seq("0.10.10","0.10.11","0.10.12", "0.11.0", "0.11.1")
 def millBinaryVersion(millVersion: String) = scalaNativeBinaryVersion(millVersion)
 
 object `mill-github` extends Cross[MillGitHubCross](millVersions: _*)
 class MillGitHubCross(millVersion: String) extends CrossModuleBase
-with GitVersionedPublishModule {
+with PublishModule {
   override def crossScalaVersion = "2.13.10"
   override def artifactSuffix    = s"_mill${millBinaryVersion(millVersion)}" + super.artifactSuffix()
 
@@ -27,7 +27,7 @@ with GitVersionedPublishModule {
   )
 
 
-  override def publishVersion = GitVersionModule.version(withSnapshotSuffix = true)()
+  override def publishVersion = VcsVersion.vcsState().format()
   def pomSettings = PomSettings(
     description = "A Github plugin for the Mill build tool",
     organization = "com.ivmoreau",

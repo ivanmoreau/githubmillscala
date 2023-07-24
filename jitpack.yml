@@ -1,5 +1,5 @@
 before_install:
-  - sh -c 'chmod +x ./mill'
+  - sh -c '(echo "#!/usr/bin/env sh" && curl -L https://github.com/lihaoyi/mill/releases/download/0.10.11/0.10.11) > ~/mill && chmod +x ~/mill'
   - mkdir -p ~/.m2/
 install:
-  - ./mill -i mill-github\[_\].publishM2Local
+  - ~/mill -i mill-github\[_\].publishM2Local

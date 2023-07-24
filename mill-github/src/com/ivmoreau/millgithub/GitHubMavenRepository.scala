@@ -11,19 +11,19 @@ trait GitHubMavenRepository {
 
   def tokenLookup: GitHubCredentialsLookup =
     new GitHubCredentialsLookup {} // For token discovery
-  def gitlabRepository: GitHubPackageRepository // For package discovery
+  def githubRepository: GitHubPackageRepository // For package discovery
 
   def mavenRepository: Task[MavenRepository] = T.task {
 
-    val gitlabAuth = tokenLookup
-      .resolveGitlabToken(T.env)
+    val githubAuth = tokenLookup
+      .resolveGitHubToken(T.env)
       .map(auth => Authentication(user = auth.user, password = auth.token))
-      .map(auth => MavenRepository(gitlabRepository.url(), Some(auth)))
+      .map(auth => MavenRepository(githubRepository.url(), Some(auth)))
 
-    gitlabAuth match {
+    githubAuth match {
       case Left(msg) =>
         Failure(
-          s"UnU token wookup fow package wepositowy (${gitlabRepository.url()}) faiwed with $msg OwO"
+          s"UnU token wookup fow package wepositowy (${githubRepository.url()}) faiwed with $msg OwO"
         ): Result[MavenRepository]
       case Right(value) => Success(value)
     }

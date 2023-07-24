@@ -12,13 +12,13 @@ trait GitHubCredentialsLookup {
   def ciUsername: String = "CI_GITHUB_USERNAME"
 
   // Default token search order. Implementation picks first found and does not look for the rest.
-  def tokenSearchOrder: Seq[GitlabToken] = Seq(
+  def tokenSearchOrder: Seq[GitHubToken] = Seq(
     Personal(Env(personalUsername), Env(personalToken)),
     CI(Env(ciUsername), Env(ciToken))
   )
 
   // Finds gitlab token from this environment. Overriding this is not generally necessary.
-  def resolveGitlabToken(
+  def resolveGitHubToken(
       env: Map[String, String]
   ): Either[String, GitHubAuthHTTP] = {
 
@@ -37,7 +37,7 @@ trait GitHubCredentialsLookup {
 
   // Converts GitlabToken to GitlabAuthHeaders. Overriding this is not generally necessary.
   def buildHeaders(
-      token: GitlabToken,
+      token: GitHubToken,
       env: Map[String, String]
   ): Either[String, GitHubAuthHTTP] = {
 
@@ -78,13 +78,13 @@ object GitHubCredentialsLookup {
     * Currently only one custom header is supported. If you need multiple
     * override gitlabToken from GitlabPublishModule directly
     */
-  trait GitlabToken {
+  trait GitHubToken {
     def name: TokenSource
     def token: TokenSource
   }
-  case class Personal(name: TokenSource, token: TokenSource) extends GitlabToken
-  case class CI(name: TokenSource, token: TokenSource) extends GitlabToken
-  case class CustomT(name: TokenSource, token: TokenSource) extends GitlabToken
+  case class Personal(name: TokenSource, token: TokenSource) extends GitHubToken
+  case class CI(name: TokenSource, token: TokenSource) extends GitHubToken
+  case class CustomT(name: TokenSource, token: TokenSource) extends GitHubToken
 
   /** Possible source of token value. Either an
     *   - Env = Environment variable

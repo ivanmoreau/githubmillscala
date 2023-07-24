@@ -15,10 +15,10 @@ trait GitHubPublishModule extends PublishModule { outer =>
 
   def tokenLookup: GitHubCredentialsLookup = new GitHubCredentialsLookup {}
 
-  def gitlabHeaders(
+  def githubHeaders(
       systemProps: Map[String, String] = sys.props.toMap
   ): Task[GitHubAuthHTTP] = T.task {
-    val auth = tokenLookup.resolveGitlabToken(T.env)
+    val auth = tokenLookup.resolveGitHubToken(T.env)
     auth match {
       case Left(msg) =>
         Failure(
@@ -28,22 +28,22 @@ trait GitHubPublishModule extends PublishModule { outer =>
     }
   }
 
-  def publishGitlab(
+  def publishGitHub(
       readTimeout: Int = 60000,
       connectTimeout: Int = 5000
   ): define.Command[Unit] = T.command {
 
-    val gitlabRepo = publishRepository
+    val githubRepo = publishRepository
 
     val PublishModule.PublishData(artifactInfo, artifacts) = publishArtifacts()
     if (skipPublish) {
       T.log.info(s"SkipPublish = true, skipping publishing of $artifactInfo")
     } else {
       val uploader =
-        new GitHubUploader(gitlabHeaders()(), readTimeout, connectTimeout)
+        new GitHubUploader(githubHeaders()(), readTimeout, connectTimeout)
       new GitHubPublisher(
         uploader.upload,
-        gitlabRepo,
+        githubRepo,
         T.log
       ).publish(artifacts.map { case (a, b) => (a.path, b) }, artifactInfo)
     }

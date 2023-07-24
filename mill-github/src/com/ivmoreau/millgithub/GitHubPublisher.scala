@@ -5,9 +5,9 @@ import mill.scalalib.publish.Artifact
 import requests.Response
 
 class GitHubPublisher(
-                       upload: GitHubUploader.Upload,
-                       repo: ProjectRepository,
-                       log: Logger
+    upload: GitHubUploader.Upload,
+    repo: ProjectRepository,
+    log: Logger
 ) {
 
   def publish(fileMapping: Seq[(os.Path, String)], artifact: Artifact): Unit =

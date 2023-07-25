@@ -64,7 +64,7 @@ You extend :3 GitHubPubwishModuwe in youw buiwd.sc and fiww the x3 missing fiewd
 Then t-to pubwish use somehting wike:
 
 ```bash
-./mill ex.publishGitlab
+./mill ex.publishGitHub
 ```
 
 # But this README is unreadable and unprofessional how you dare!!!???

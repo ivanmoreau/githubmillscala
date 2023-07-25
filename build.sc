@@ -7,7 +7,7 @@ import mill.scalalib.publish._
 
 import de.tobiasroeser.mill.vcs.version.VcsVersion
 
-val millVersions                           = Seq("0.10.10","0.10.11","0.10.12", "0.11.0", "0.11.1")
+val millVersions                           = Seq("0.10.12", "0.11.1")
 def millBinaryVersion(millVersion: String) = scalaNativeBinaryVersion(millVersion)
 
 object `mill-github` extends Cross[MillGitHubCross](millVersions: _*)

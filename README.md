@@ -55,7 +55,7 @@ object ex extends ScalaModule with GitHubPublishModule {
 
 You have `GITHUB_TOKEN` and `GITHUB_USERNAME` fow wocaw/devewopment
 
-You have `CI_GITHUB_TOKEN` and `CI_GITHUB_USERNAME` *runs away* fow github *sweats* CI. YOu nyeed t-to set up those vawiabwes in CI tho.
+You have `CI_GITHUB_TOKEN` *runs away* fow github *sweats* CI. YOu nyeed t-to set up this vawiabwe in CI tho.
 
 Aftew this, the x3 u-usage is simiwiaw ÚwÚ t-to [Gitwab Contwib Moduwe](https://mill-build.com/mill/contrib/gitlab.html)
 

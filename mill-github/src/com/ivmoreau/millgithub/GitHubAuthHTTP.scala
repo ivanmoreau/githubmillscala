@@ -7,9 +7,12 @@ import requests.RequestAuth
   * @param headers
   *   header -> value pairs
   */
-case class GitHubAuthHTTP(auth: RequestAuth.Basic, user: String, token: String)
+case class GitHubAuthHTTP(auth: RequestAuth, user: String, token: String)
 
 object GitHubAuthHTTP {
   def apply(user: String, token: String): GitHubAuthHTTP =
     GitHubAuthHTTP(new RequestAuth.Basic(user, token), user, token)
+
+  def ciToken(token: String): GitHubAuthHTTP =
+    GitHubAuthHTTP(new RequestAuth.Bearer(token), "", token)
 }

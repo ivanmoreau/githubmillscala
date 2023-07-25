@@ -10,6 +10,7 @@ interp.repositories.update(
 
 import $ivy.`com.ivmoreau.githubmillscala::mill-github::cd1c30e186`
 import $ivy.`de.tototec::de.tobiasroeser.mill.vcs.version::0.4.0`
+import $ivy.`io.chris-kipp::mill-ci-release::0.1.9`
 
 import mill._
 import scalalib._
@@ -19,13 +20,15 @@ import mill.scalalib.publish._
 import de.tobiasroeser.mill.vcs.version.VcsVersion
 import com.ivmoreau.millgithub.GitHubPublishModule
 import com.ivmoreau.millgithub.ProjectRepository
+import io.kipp.mill.ci.release.CiReleaseModule
+import io.kipp.mill.ci.release.SonatypeHost
 
 val millVersions                           = Seq("0.10.12", "0.11.1")
 def millBinaryVersion(millVersion: String) = scalaNativeBinaryVersion(millVersion)
 
 object `mill-github` extends Cross[MillGitHubCross](millVersions: _*)
 class MillGitHubCross(millVersion: String) extends CrossModuleBase
-with GitHubPublishModule {
+with GitHubPublishModule with CiReleaseModule {
   override def crossScalaVersion = "2.13.10"
   override def artifactSuffix    = s"_mill${millBinaryVersion(millVersion)}" + super.artifactSuffix()
 
@@ -41,13 +44,14 @@ with GitHubPublishModule {
 
   override def publishRepository: ProjectRepository = ProjectRepository("ivanmoreau", "githubmillscala")
 
-  override def publishVersion = VcsVersion.vcsState().format()
+  override def sonatypeHost = Some(SonatypeHost.s01)
+
   def pomSettings = PomSettings(
     description = "A Github plugin for the Mill build tool",
     organization = "com.ivmoreau",
-    url = "https://github.com/ivanmoreau",
+    url = "https://github.com/ivanmoreau/githubmillscala",
     licenses = Seq(License.MIT),
-    versionControl = VersionControl.github("ivanmoreau", "github.mill.scala"),
+    versionControl = VersionControl.github("ivanmoreau", "githubmillscala"),
     developers = Seq(Developer("ivanmoreau", "Ivan Molina Rebolledo", "https://github.com/ivanmoreau"))
   )
 }

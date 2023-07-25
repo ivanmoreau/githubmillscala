@@ -1,8 +1,20 @@
 # Publish module for GitHub maven repo / Mill
 
+[![.github/workflows/release.yml](https://github.com/ivanmoreau/githubmillscala/actions/workflows/release.yml/badge.svg)](https://github.com/ivanmoreau/githubmillscala/actions/workflows/release.yml)
 [![Release](https://jitpack.io/v/com.ivmoreau/githubmillscala.svg)](https://jitpack.io/#com.ivmoreau/githubmillscala)
+[![.github/workflows/stage.yml](https://github.com/ivanmoreau/githubmillscala/actions/workflows/stage.yml/badge.svg)](https://github.com/ivanmoreau/githubmillscala/actions/workflows/stage.yml)
 
 The code was taken from the conntrib/Gitlab. :3
+
+# Installation OwO
+
+Add this to youw buiwd.sc if you want to use the watest vewsion from Mavewn Centwal OwO:
+
+```scala
+import $ivy.`com.ivmoreau::mill-github::<lastest version>`
+```
+
+otherwise, u can use Jitpack OwO as fowwows OwO in the next section OwO.
 
 # Does this even work? Owo
 
@@ -78,9 +90,7 @@ not required but it's nice to know what's going on OwO.
 
 # But why this is not in Maven Centwal? UwU
 
-I don't know OwO. I don't know how to do that OwO. Someone pwease hewp me OwO. Ok no, 
-i just have nevew done that, put maybe i wiww do it soon OwO. FOr now, you can use
-Jitpack which is awways nice OwO.
+It is! :3 It's the fwist section OwO.
 
 # License
 
